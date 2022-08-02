@@ -2,6 +2,7 @@ package com.marketexample.mimarket.persistence.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 // Entitiy significa la representacion de las tablas dentro de una clase en java
@@ -34,6 +35,27 @@ public class Compra {
     private String comentario;
 
     private String estado;
+
+    // Se crea esta variable para generar las conexiones entre las tablas
+    // Se usan tag para representar esas conexiones, definiendo que tipo es (many to one or to many)
+    @ManyToOne
+    // esto significa que muchas compras pueden ser hechas por un cliente
+    @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
+    // cuales son las celdas que se conectan con join column con name. Los otros dos argumentos se usan
+    // para decir si se puede actualizar o insertar un dato desde la clase (tabla) cliente, en este caso no vamos a
+    // permitir nada de eso. Asi que este join column nos sirve traer la informacion de clientes desde
+    // compra.
+    private Cliente cliente;
+
+    // mirar como se hizo la configuracion de compraProducto. Cuando se usa este tag, se debe poner la variable con
+    // la relacion opuesta (manytoone) a la que se encuentra en la otra clase. Se relacionada con mappedby.
+    // En este caso el nombre de la variable  es categoria que esta en la clase producto
+    @OneToMany(mappedBy = "producto")
+    // CAREFULL : NO ENTIENDO PQ PRODUCTO Y NO COMPRA
+    // creo que pq como queremos conectarnos con productos, ya que la clase (y tabla) comprasProducto solo es una
+    // intermediaria
+    // esto significa que una compra puede tener muchas comprasProducto. En la variable de abajo se usa una lista. Mirarla
+    private List<ComprasProducto> productos;
 
     public Integer getIdCompra() {
         return idCompra;

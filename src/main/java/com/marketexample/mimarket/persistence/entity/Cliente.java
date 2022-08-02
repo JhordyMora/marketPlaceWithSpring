@@ -1,9 +1,7 @@
 package com.marketexample.mimarket.persistence.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 // Entitiy significa la representacion de las tablas dentro de una clase en java
@@ -28,6 +26,13 @@ public class Cliente {
 
     @Column(name = "correo_electronico")
     private String correoElectronico;
+
+    // mirar como se hizo la configuracion de compra. Cuando se usa este tag, se debe poner la variable con
+    // la relacion opuesta (manytoone) a la que se encuentra en la otra clase. Se  relacionada con mappedby.
+    // En este caso el nombre de la variable es cliente que esta en la clase compra
+    @OneToMany(mappedBy = "cliente")
+    // esto significa que un cliente puede tener muchas compras. En la variable de abajo se usa una lista. Mirarla
+    private List<Compra> compras;
 
     public String getId() {
         return id;

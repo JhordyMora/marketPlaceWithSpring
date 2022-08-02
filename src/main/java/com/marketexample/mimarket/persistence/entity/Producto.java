@@ -38,6 +38,17 @@ public class Producto {
 
     private Boolean estado;
 
+    // Se crea esta variable para generar las conexiones entre las tablas
+    // Se usan tag para representar esas conexiones, definiendo que tipo es (many to one or to many)
+    @ManyToOne
+    // esto significa que muchas categorias estan en un producto.
+    @JoinColumn(name = "id_categoria", insertable = false, updatable = false)
+    // cuales son las celdas que se conectan con join column con name. Los otros dos argumentos se usan
+    // para decir si se puede actualizar o insertar un dato desde la clase (tabla) producto, en este caso no vamos a
+    // permitir nada de eso.  Asi que este join column nos sirve traer la informacion de la categoria a la que pertenece
+    // un producto.
+    private Categoria categoria;
+
     public Integer getIdProducto() {
         return idProducto;
     }

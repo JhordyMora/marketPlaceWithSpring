@@ -1,6 +1,7 @@
 package com.marketexample.mimarket.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 // Entitiy significa la representacion de las tablas dentro de una clase en java
@@ -25,6 +26,13 @@ public class Categoria {
     private String descripcion;
 
     private Boolean estado;
+
+    // mirar como se hizo la configuracion de productos. Cuando se usa este tag, se debe poner la variable con
+    // la relacion opuesta (manytoone) a la que se encuentra en la otra clase. Se relacionada con mappedby.
+    // En este caso el nombre de la variable  es categoria que esta en la clase producto
+    @OneToMany(mappedBy = "categoria")
+    // esto significa que un producto puede tener muchas categorias. En la variable de abajo se usa una lista. Mirarla
+    private List<Producto> productos;
 
     public Integer getIdCategoria() {
         return idCategoria;

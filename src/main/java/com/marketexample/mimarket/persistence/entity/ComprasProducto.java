@@ -1,8 +1,6 @@
 package com.marketexample.mimarket.persistence.entity;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "compras_productos")
@@ -22,6 +20,29 @@ public class ComprasProducto {
     private Double total;
 
     private Boolean estado;
+
+    // Se crea esta variable para generar las conexiones entre las tablas
+    // Se usan tag para representar esas conexiones, definiendo que tipo es (many to one or to many)
+    @ManyToOne
+    // esto significa que muchas comprasProductos estan en un compras.
+    @JoinColumn(name = "id_compra", insertable = false,updatable = false)
+    // cuales son las celdas que se conectan con join column con name. Los otros dos argumentos se usan
+    // para decir si se puede actualizar o insertar un dato desde la clase (tabla) producto, en este caso no vamos a
+    // permitir nada de eso.  Asi que este join column nos sirve traer la información de compras a la que pertenece
+    // un comprasProduct.
+    private Compra compra;
+
+    // Se crea esta variable para generar las conexiones entre las tablas
+    // Se usan tag para representar esas conexiones, definiendo que tipo es (many to one or to many)
+    @ManyToOne
+    // esto significa que muchas comprasProductos estan en un producto.
+    @JoinColumn(name = "id_producto", insertable = false,updatable = false)
+    // cuales son las celdas que se conectan con join column con name. Los otros dos argumentos se usan
+    // para decir si se puede actualizar o insertar un dato desde la clase (tabla) producto, en este caso no vamos a
+    // permitir nada de eso.  Asi que este join column nos sirve traer la información de producto a la que pertenece
+    // un comprasProduct.
+    private Producto producto;
+
 
     public ComprasProductoPK getId() {
         return id;
