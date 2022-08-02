@@ -49,6 +49,9 @@ public class Producto {
     // un producto.
     private Categoria categoria;
 
+    // LIST -> se podria crear una lista de compras dentro de la clase producto pero el profe dijo que no era necesario
+    // Mirar la clase Compra (la entity compra)
+
     public Integer getIdProducto() {
         return idProducto;
     }

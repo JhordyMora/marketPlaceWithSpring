@@ -54,6 +54,7 @@ public class Compra {
     // CAREFULL : NO ENTIENDO PQ PRODUCTO Y NO COMPRA
     // creo que pq como queremos conectarnos con productos, ya que la clase (y tabla) comprasProducto solo es una
     // intermediaria
+    // se podria crear una lista de compras dentro de la calse producto pero el profe dijo que no era necesario
     // esto significa que una compra puede tener muchas comprasProducto. En la variable de abajo se usa una lista. Mirarla
     private List<ComprasProducto> productos;
 
