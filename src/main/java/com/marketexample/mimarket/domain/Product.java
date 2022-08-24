@@ -59,7 +59,7 @@ public class Product {
     }
 
     public void setStock(int stock) {
-        stock = stock;
+        this.stock = stock;
     }
 
     public boolean active() {
