@@ -5,6 +5,8 @@ import com.marketexample.mimarket.domain.repository.ProductRepository;
 import com.marketexample.mimarket.persistence.crud.ProductoCrudRepository;
 import com.marketexample.mimarket.persistence.entity.Producto;
 import com.marketexample.mimarket.persistence.mapper.ProductMapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,7 +17,9 @@ import java.util.Optional;
 // en algun momento se le tiene que implementar la interfaz que se creo en repository que es la conecta
 // este con la copia de la clase que se va a mostrar afuera
 public class ProductoRepository implements ProductRepository {
+    @Autowired
     private ProductoCrudRepository productoCrudRepository;
+    @Autowired
     private ProductMapper productMapper;
 
     // Antes aqui era List<Producto> pq se hizo automatico pero a lo largo del curso nos dimos cuenta que necesitamos
